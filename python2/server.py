@@ -21,8 +21,8 @@ app = flask.Flask(__name__)
 @app.route('/', methods=['GET'])
 def get_it():
     data = {
-        "utc_datetime": utcnow().isoformat(),
-        "uuid": str(uuid.uuid4()),
+        "UTCDatetime": utcnow().isoformat(),
+        "UUID": str(uuid.uuid4()),
     }
     return flask.jsonify(data)
 
@@ -34,8 +34,8 @@ def post_it(the_uuid):
     except ValueError as ex:
         return 400, ex.message  # Yep, this isn't the best thing to return...
     data = {
-        "utc_datetime": utcnow().isoformat(),
-        "uuid": str(the_uuid),
+        "UTCDatetime": utcnow().isoformat(),
+        "UUID": str(the_uuid),
     }
     return flask.jsonify(data)
 

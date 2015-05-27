@@ -32,8 +32,8 @@ It accepts a GET request to root path, and return the following JSON:
 
 ```json
 {
-  "utc_datetime": "<utc_datetime>",
-  "uuid": "<random uuid>"
+  "UTCDatetime": "<utc_datetime>",
+  "UUID": "<random uuid>"
 }
 ```
 

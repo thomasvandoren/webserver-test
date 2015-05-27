@@ -50,7 +50,7 @@ class Tester(object):
             resp.raise_for_status()
             self.check_resp(resp)
 
-            actual_uuid = uuid.UUID(resp.json()['uuid'])
+            actual_uuid = uuid.UUID(resp.json()['UUID'])
             assert actual_uuid == u, 'POST request returned unexpected UUID. Got: {} Expected: {}'.format(actual_uuid, u)
 
     def test_bad_post(self):
@@ -62,19 +62,19 @@ class Tester(object):
         assert 'application/json' == resp.headers['content-type'], 'incorrect content-type header'
 
         data = resp.json()
-        assert 'utc_datetime' in data.keys(), 'utc_datetime key missing from response'
-        assert 'uuid' in data.keys(), 'uuid key missing from response'
+        assert 'UTCDatetime' in data.keys(), 'UTCDatetime key missing from response'
+        assert 'UUID' in data.keys(), 'UUID key missing from response'
 
         try:
-            dt = datetime.datetime.strptime(data['utc_datetime'], '%Y-%m-%dT%H:%M:%S')
+            dt = datetime.datetime.strptime(data['UTCDatetime'], '%Y-%m-%dT%H:%M:%S')
         except ValueError as ex:
-            print('Failed to parse UTC datetime value: {}'.format(data['utc_datetime']))
+            print('Failed to parse UTC datetime value: {}'.format(data['UTCDatetime']))
             sys.exit(1)
 
         try:
-            u = uuid.UUID(data['uuid'])
+            u = uuid.UUID(data['UUID'])
         except ValueError as ex:
-            print('Failed to parser UUID value: {}'.format(data['uuid']))
+            print('Failed to parser UUID value: {}'.format(data['UUID']))
             sys.exit(1)
 
 
